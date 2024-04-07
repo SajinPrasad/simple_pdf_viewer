@@ -1,0 +1,55 @@
+<!-- display_app/templates/display_app/display_pdfs.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Display PDFs</title>
+    <style>
+        .pdf-tile {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+        }
+        .pdf-preview {
+            max-width: 90%;
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-lg-12 d-flex justify-content-end">
+        {% if request.user.is_authenticated %}
+        <a class="m-5 mt-0" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <a class="m-5 mt-0" href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+    <div class="container mt-5">
+        <div    class=" w-100 text-center mb-5">
+            <h2 class="mb-4">Uploaded PDFs</h2>
+        </div>
+        <div class="row">
+            {% for document in documents %}
+                <div class="col-md-4">
+                    <div class="pdf-tile">
+                        <h5>{{ document.title }}</h5>
+                        <a href="{% url 'pdf_detail' document.pk %}" class="btn btn-primary">View PDF</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.10.377/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
