@@ -14,11 +14,14 @@ python3 -m virtualenv venv
 7. Activate the virtual environment : 
    source venv/bin/activate
 
-8. Run the project : 
+8. Install requirements.
+pip install -r requirements.txt
+
+10. Run the project : 
    python manage.py runserver
 
-9. Admins can login and upload and manage the PDFs.
-10. Create user using the terminal within the project : 
+11. Admins can login and upload and manage the PDFs.
+12. Create user using the terminal within the project : 
    python manage.py createsuperuser
 
 
